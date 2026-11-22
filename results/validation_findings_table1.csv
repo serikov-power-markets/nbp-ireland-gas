@@ -1,0 +1,11 @@
+row,field,rule
+3,f35,must be positive
+7,f2,"code type must be ACER, LEI, BIC, EIC or GLN"
+11,f50,delivery end date before delivery start date
+20,f4,other counterparty equals reporting counterparty
+25,f58,"action type must be new, modify, error or cancel"
+30,f34,voice-brokered is Y or blank
+33,report_time,reported later than the working day after conclusion (Article 7(1))
+36,f43,termination date must be blank when equal to the delivery end date
+14,f31,duplicate unique transaction ID among new reports
+15,f31,duplicate unique transaction ID among new reports

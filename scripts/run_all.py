@@ -102,6 +102,42 @@ bk.to_csv(RES / "booking_by_gas_year.csv", index=False)
 out["booking_mean_regret_pct"] = {c: round(float(bk[c].mean()), 1) for c in ("regret_trained_pct", "regret_peak_pct", "regret_p95_pct")}
 out["booking_years"] = int(len(bk))
 
+# C2. the same exercise with the published GNI Moffat Entry tariff structure of gas year 2025/26 (flow in MWh per day)
+from nbpie import gni_booking as gb  # noqa: E402
+rows2 = []
+for om in (1.5, 3.0, 6.0):
+    for y in sorted(gy.unique())[1:]:
+        tr, te = gy[gy == y - 1].index, gy[gy == y].index
+        if len(tr) < 330 or len(te) < 330:
+            continue
+        ftr, fte, ff_tr, ff_te = flow[tr] * 1000, flow[te] * 1000, fc[tr] * 1000, fc[te] * 1000
+        k_tr, _ = gb.best_base(ftr, ff_tr, tr, overrun_mult=om)
+        k_opt, c_h = gb.best_base(fte, ff_te, te, overrun_mult=om)
+        mlev = np.array([np.quantile(ftr[tr.month == m], 0.9) for m in range(1, 13)])
+        row = {"overrun_mult": om, "gas_year": int(y), "base_trained_gwh_d": round(k_tr / 1000, 1), "base_hindsight_gwh_d": round(k_opt / 1000, 1),
+               "cost_hindsight_eur": round(c_h), "cost_trained_eur": round(gb.cost(fte, ff_te, te, k_tr, overrun_mult=om)),
+               "cost_peak_last_year_eur": round(gb.cost(fte, ff_te, te, ftr.max(), overrun_mult=om)),
+               "cost_p95_last_year_eur": round(gb.cost(fte, ff_te, te, np.quantile(ftr, 0.95), overrun_mult=om)),
+               "cost_trained_plus_monthly_p90_eur": round(gb.cost(fte, ff_te, te, k_tr, monthly_level=mlev, overrun_mult=om)),
+               "cost_trained_perfect_forecast_eur": round(gb.cost(fte, fte, te, k_tr, overrun_mult=om)),
+               "cost_all_annual_at_peak_eur": round(gb.ANNUAL * fte.max())}
+        for k in ("trained", "peak_last_year", "p95_last_year", "trained_plus_monthly_p90"):
+            row[f"regret_{k}_pct"] = round(100 * (row[f"cost_{k}_eur"] / c_h - 1), 1)
+        rows2.append(row)
+bk2 = pd.DataFrame(rows2)
+bk2.to_csv(RES / "booking_gni_tariff.csv", index=False)
+out["booking_gni"] = {f"overrun_x{om}": {c: round(float(g[c].mean()), 1) for c in g.columns if c.startswith("regret_")} for om, g in bk2.groupby("overrun_mult")}
+
+# D2. the same check on the official field list of Table 1 of Regulation 1348/2014
+from nbpie import remit_table1 as rt  # noqa: E402
+df1, inj1 = rt.synthetic(errors=True)
+v1 = rt.validate(df1, today="2027-01-01")
+v1.to_csv(RES / "validation_findings_table1.csv", index=False)
+found1 = {(int(a), b) for a, b in zip(v1.row, v1.field)}
+out["remit_table1"] = {"reports": int(len(df1)), "fields": len(rt.FIELDS), "injected_defects": len(inj1), "findings": int(len(v1)),
+                       "all_injected_found": all((r, f) in found1 for r, f in inj1.items()),
+                       "clean_file_findings": int(len(rt.validate(rt.synthetic(errors=False)[0], today="2027-01-01")))}
+
 # D. reporting schema check
 df, inj = remit.synthetic_trades(errors=True)
 v = remit.validate(df, today="2027-01-01")

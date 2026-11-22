@@ -54,6 +54,34 @@
     "regret_p95_pct": 7.3
   },
   "booking_years": 3,
+  "booking_gni": {
+    "overrun_x1.5": {
+      "regret_trained_pct": 1.2,
+      "regret_peak_last_year_pct": 19.4,
+      "regret_p95_last_year_pct": 2.8,
+      "regret_trained_plus_monthly_p90_pct": 2.4
+    },
+    "overrun_x3.0": {
+      "regret_trained_pct": 0.7,
+      "regret_peak_last_year_pct": 13.9,
+      "regret_p95_last_year_pct": 1.5,
+      "regret_trained_plus_monthly_p90_pct": 0.1
+    },
+    "overrun_x6.0": {
+      "regret_trained_pct": 1.9,
+      "regret_peak_last_year_pct": 9.5,
+      "regret_p95_last_year_pct": 3.8,
+      "regret_trained_plus_monthly_p90_pct": 0.9
+    }
+  },
+  "remit_table1": {
+    "reports": 40,
+    "fields": 58,
+    "injected_defects": 9,
+    "findings": 10,
+    "all_injected_found": true,
+    "clean_file_findings": 0
+  },
   "remit": {
     "trades": 40,
     "injected_defects": 7,
