@@ -1,0 +1,4 @@
+gas_year,base_trained_gwh,base_hindsight_gwh,base_peak_gwh,cost_trained,cost_peak_last_year,cost_p95_last_year,cost_hindsight,cost_trained_perfect_forecast,regret_trained_pct,regret_peak_pct,regret_p95_pct
+2024,202.6,205.4,302.2,86309.0,110590.0,93794.0,86302.0,78570.0,0.0,28.1,8.7
+2025,205.4,215.2,298.5,94465.0,109959.0,95798.0,94158.0,82788.0,0.3,16.8,1.7
+2026,215.2,216.4,338.7,89155.0,123622.0,99379.0,89154.0,82497.0,0.0,38.7,11.5

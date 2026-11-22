@@ -1,0 +1,9 @@
+row,field,rule
+3,price,must be positive
+7,lei,LEI must be 20 characters A-Z0-9
+11,delivery_end,not after delivery start
+20,counterparty_lei,counterparty equals reporting party
+25,buy_sell,must be B or S
+30,price_ccy,currency not in list
+14,uti,duplicate UTI
+15,uti,duplicate UTI

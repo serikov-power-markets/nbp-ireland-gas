@@ -1,0 +1,64 @@
+{
+  "period": [
+    "2021-11-22",
+    "2026-11-21"
+  ],
+  "days": 1826,
+  "fx": "ECB daily",
+  "annual_twh": {
+    "2021": 7.2,
+    "2022": 60.5,
+    "2023": 57.4,
+    "2024": 63.3,
+    "2025": 63.2,
+    "2026": 56.7
+  },
+  "peak_day_gwh": 339.0,
+  "peak_day": "2025-01-08",
+  "mean_gwh_d": 168.8,
+  "winter_over_summer": 1.37,
+  "p95_over_mean": 1.48,
+  "link_isem": {
+    "days": 1398,
+    "coef_gwh_per_gwh_power_gas": 1.35,
+    "t": 18.9,
+    "r2_with": 0.715,
+    "r2_month_only": 0.372,
+    "mean_power_gas_gwh_d": 54.6,
+    "mean_moffat_gwh_d": 168.2,
+    "corr_flow_isem_price": 0.51
+  },
+  "spark_by_year": {
+    "spark_fuel": {
+      "2023": 43.4,
+      "2024": 41.6,
+      "2025": 43.9,
+      "2026": 43.6
+    },
+    "spark_clean": {
+      "2023": 9.8,
+      "2024": 15.3,
+      "2025": 14.1,
+      "2026": 9.4
+    }
+  },
+  "sap_eur_mwh_by_year": {
+    "2023": 39.5,
+    "2024": 33.9,
+    "2025": 35.6,
+    "2026": 52.8
+  },
+  "booking_mean_regret_pct": {
+    "regret_trained_pct": 0.1,
+    "regret_peak_pct": 27.9,
+    "regret_p95_pct": 7.3
+  },
+  "booking_years": 3,
+  "remit": {
+    "trades": 40,
+    "injected_defects": 7,
+    "findings": 8,
+    "all_injected_found": true,
+    "clean_file_findings": 0
+  }
+}
