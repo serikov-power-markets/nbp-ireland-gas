@@ -1,0 +1,79 @@
+{
+ "days": 1827,
+ "flags": {
+  "missing_day": 0,
+  "missing_value": 1,
+  "nonpositive": 0,
+  "cv_outside": 12,
+  "nom_dev": 12,
+  "any_flag": 13
+ },
+ "implied_cv_kwh_m3": {
+  "median": 11.021,
+  "p05": 10.808,
+  "p95": 11.214
+ },
+ "nomination_vs_flow": {
+  "days": 1814,
+  "mean_abs_dev_pct": 0.47,
+  "p95_abs_dev_pct": 1.37
+ },
+ "forecasts": [
+  {
+   "model": "lag7 (same weekday last week)",
+   "days": 970,
+   "mae_gwh": 32.41,
+   "mape_pct": 19.15,
+   "bias_gwh": -0.19,
+   "p95_abs_error_gwh": 78.2,
+   "assumed_charge_eur_m_per_yr": 14.17
+  },
+  {
+   "model": "lag2 (two days ago)",
+   "days": 970,
+   "mae_gwh": 30.17,
+   "mape_pct": 18.1,
+   "bias_gwh": 0.03,
+   "p95_abs_error_gwh": 78.9,
+   "assumed_charge_eur_m_per_yr": 13.14
+  },
+  {
+   "model": "ridge: nomination lags and calendar",
+   "days": 970,
+   "mae_gwh": 22.54,
+   "mape_pct": 13.18,
+   "bias_gwh": -3.56,
+   "p95_abs_error_gwh": 57.1,
+   "assumed_charge_eur_m_per_yr": 9.93
+  },
+  {
+   "model": "ridge: plus day-ahead renewable forecast and SAP",
+   "days": 970,
+   "mae_gwh": 15.49,
+   "mape_pct": 9.25,
+   "bias_gwh": -5.38,
+   "p95_abs_error_gwh": 41.2,
+   "assumed_charge_eur_m_per_yr": 6.68
+  },
+  {
+   "model": "gradient boosting: same inputs",
+   "days": 970,
+   "mae_gwh": 16.66,
+   "mape_pct": 9.64,
+   "bias_gwh": -7.27,
+   "p95_abs_error_gwh": 43.6,
+   "assumed_charge_eur_m_per_yr": 7.35
+  }
+ ],
+ "forecast_period": [
+  "2024-01-01",
+  "2026-10-31"
+ ],
+ "best_model": "ridge: plus day-ahead renewable forecast and SAP",
+ "best_mae_by_season_gwh": {
+  "spring_autumn": 14.43,
+  "summer": 12.96,
+  "winter": 20.36
+ },
+ "share_of_days_error_above_5pct_best": 0.653
+}

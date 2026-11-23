@@ -1,0 +1,6 @@
+model,days,mae_gwh,mape_pct,bias_gwh,p95_abs_error_gwh,assumed_charge_eur_m_per_yr
+lag7 (same weekday last week),970,32.41,19.15,-0.19,78.2,14.17
+lag2 (two days ago),970,30.17,18.1,0.03,78.9,13.14
+ridge: nomination lags and calendar,970,22.54,13.18,-3.56,57.1,9.93
+ridge: plus day-ahead renewable forecast and SAP,970,15.49,9.25,-5.38,41.2,6.68
+gradient boosting: same inputs,970,16.66,9.64,-7.27,43.6,7.35
